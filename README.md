@@ -2,7 +2,7 @@
 
 Simulation study of closed-loop VLA control for dual-arm humanoid manipulation using [StarVLA](https://github.com/starVLA/starVLA), deployed on the Robotis SG2 AI Worker in NVIDIA IsaacLab.
 
-> Full results, videos, and methodology: **[yourname.github.io/starvla-results](https://yourname.github.io/starvla-results)**
+> Full results, videos, and methodology: **[https://rao-sanaullah.github.io/starVLA_results/](https://rao-sanaullah.github.io/starVLA_results/)**
 
 ## Key results
 
@@ -24,7 +24,7 @@ videos/
 
 ## Links
 
-- [Full results page](https://yourname.github.io/starvla-results)
+- [Full results page](https://rao-sanaullah.github.io/starVLA_results/)
 - [Installation guide](https://rao-sanaullah.github.io/starVLA_setup/)
 - [Official StarVLA repo](https://github.com/starVLA/starVLA)
 - [Paper](#)
