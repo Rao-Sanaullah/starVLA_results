@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StarVLA — SG2 Results</title>
+<style>
+[data-theme="dark"]{
+  --bg:#0f1117;--surface:#1a1d27;--card:#22263a;--border:#2e3450;
+  --accent:#6c63ff;--accent2:#00d4aa;--text:#e2e8f0;--muted:#64748b;
+  --success:#10b981;--warn:#f59e0b;--danger:#ef4444;--code-bg:#0d1117;
+  --shadow:rgba(0,0,0,.4);--ns:#EF9F27;--st:#378ADD;
+  --mc-bg:#22263a;--bar-bg:#1a1d27;
+}
+[data-theme="light"]{
+  --bg:#f8fafc;--surface:#ffffff;--card:#ffffff;--border:#e2e8f0;
+  --accent:#5b52f0;--accent2:#0891b2;--text:#0f172a;--muted:#64748b;
+  --success:#059669;--warn:#d97706;--danger:#dc2626;--code-bg:#1e293b;
+  --shadow:rgba(0,0,0,.08);--ns:#c47d0e;--st:#1d60a0;
+  --mc-bg:#f1f5f9;--bar-bg:#e2e8f0;
+}
+*{margin:0;padding:0;box-sizing:border-box;transition:background-color .25s,color .25s,border-color .25s;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px var(--shadow);}
+.nav-left{display:flex;align-items:center;gap:28px;}
+.nav-logo{font-size:1.1rem;font-weight:700;color:var(--accent);}
+.nav-links{display:flex;gap:18px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.86rem;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.tog{background:var(--mc-bg);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:.8rem;color:var(--text);display:flex;align-items:center;gap:6px;transition:all .2s;}
+.tog:hover{border-color:var(--accent);}
+.hero{padding:68px 40px;text-align:center;border-bottom:1px solid var(--border);}
+.hero h1{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;}
+.hero p{font-size:.93rem;color:var(--muted);max-width:620px;margin:0 auto 18px;}
+.hero-meta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+.meta{font-size:.8rem;color:var(--muted);}
+.meta strong{color:var(--text);}
+.attr{background:rgba(108,99,255,.07);border:1px solid rgba(108,99,255,.22);border-radius:10px;padding:13px 18px;max-width:680px;margin:20px auto 0;font-size:.83rem;color:var(--muted);}
+[data-theme="light"] .attr{background:rgba(91,82,240,.05);border-color:rgba(91,82,240,.18);}
+.attr a{color:var(--accent);text-decoration:none;}
+.sec{padding:60px 40px;max-width:960px;margin:0 auto;}
+.sec h2{font-size:1.5rem;font-weight:700;margin-bottom:8px;}
+.sec-sub{color:var(--muted);font-size:.88rem;margin-bottom:32px;}
+hr{border:none;border-top:1px solid var(--border);}
+
+/* Metric cards */
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;margin-bottom:36px;}
+.mc{background:var(--mc-bg);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+.mc .lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;}
+.mc .val{font-size:1.9rem;font-weight:800;}
+.mc .sub{font-size:.73rem;color:var(--muted);margin-top:3px;}
+.c-ns{color:var(--ns);}.c-st{color:var(--st);}.c-ok{color:var(--success);}
+
+/* Bars */
+.bcols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:32px;}
+.bcol h4{font-size:.83rem;font-weight:600;margin-bottom:11px;}
+.bg{margin-bottom:9px;}
+.bl{font-size:.76rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:3px;}
+.bw{background:var(--bar-bg);border-radius:4px;height:17px;overflow:hidden;}
+.bf{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:.65rem;font-weight:600;color:white;white-space:nowrap;}
+
+/* Video */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-bottom:32px;}
+.vc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px var(--shadow);}
+.vc video{width:100%;display:block;background:#000;max-height:190px;object-fit:cover;}
+.vi{padding:14px;}
+.vi h4{font-size:.88rem;font-weight:600;margin-bottom:5px;}
+.vi p{font-size:.79rem;color:var(--muted);}
+.vb{display:inline-block;padding:2px 9px;border-radius:20px;font-size:.68rem;font-weight:600;margin-bottom:6px;}
+.vb-ns{background:rgba(239,159,39,.13);color:var(--ns);border:1px solid var(--ns);}
+.vb-st{background:rgba(55,138,221,.13);color:var(--st);border:1px solid var(--st);}
+.vb-w{background:rgba(245,158,11,.13);color:var(--warn);border:1px solid var(--warn);}
+
+/* Code */
+.cb{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;margin:11px 0;overflow:hidden;}
+.ch{background:var(--surface);padding:7px 13px;font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+[data-theme="light"] .ch{background:#f1f5f9;}
+.ch .lang{color:var(--accent);font-weight:600;}
+.cpb{background:none;border:1px solid var(--border);color:var(--muted);padding:2px 8px;border-radius:4px;cursor:pointer;font-size:.68rem;}
+.cpb:hover{color:var(--accent);border-color:var(--accent);}
+pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.8rem;line-height:1.65;color:#e2e8f0;}
+.cm{color:#6b7280;}.cg{color:#86efac;}.add{color:#86efac;}
+
+/* Cards */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 4px var(--shadow);}
+.card h3{font-size:.93rem;font-weight:700;margin-bottom:9px;}
+.card p,.card li{font-size:.84rem;color:var(--muted);margin-bottom:6px;}
+.card ul{padding-left:16px;}
+.card.ns{border-top:3px solid var(--ns);}
+.card.st{border-top:3px solid var(--st);}
+.br{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:.83rem;}
+.br:last-child{border-bottom:none;}
+.br .k{color:var(--muted);}
+.br .v{font-weight:600;}
+.win{color:var(--success);font-weight:700;}
+
+/* Insight */
+.insight{background:rgba(108,99,255,.07);border:1px solid rgba(108,99,255,.22);border-radius:12px;padding:18px;margin:18px 0;}
+[data-theme="light"] .insight{background:rgba(91,82,240,.05);border-color:rgba(91,82,240,.18);}
+.insight h4{color:var(--accent);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
+.insight p{color:var(--muted);font-size:.85rem;margin-bottom:6px;}
+.insight p:last-child{margin-bottom:0;}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;font-size:.84rem;margin:11px 0;}
+.tbl th{background:var(--mc-bg);color:var(--text);padding:8px 12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border);}
+.tbl td{padding:8px 12px;color:var(--muted);border-bottom:1px solid var(--border);}
+.tbl tr:hover td{background:var(--mc-bg);}
+.tbl code{background:var(--code-bg);padding:1px 5px;border-radius:3px;font-size:.77rem;color:var(--accent2);}
+
+/* Diff */
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+.dc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:13px;}
+.dc .dl{font-size:.72rem;font-weight:600;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid var(--border);}
+.dc pre{padding:0;font-size:.79rem;}
+
+/* GUI */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;}
+.gf{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:17px;}
+.gf .ico{font-size:1.2rem;margin-bottom:7px;}
+.gf h4{font-size:.86rem;font-weight:600;margin-bottom:4px;}
+.gf p{font-size:.78rem;color:var(--muted);}
+
+/* Bench bench */
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
+
+@media(max-width:680px){.two,.bcols,.drow,.bgrid{grid-template-columns:1fr;}.hero h1{font-size:1.9rem;}.sec{padding:36px 18px;}nav{padding:11px 18px;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">StarVLA — SG2 Results</div>
+    <div class="nav-links">
+      <a href="#results">Results</a>
+      <a href="#videos">Videos</a>
+      <a href="#how-we-did-it">How we did it</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#gui">GUI</a>
+      <a href="https://yourname.github.io/starvla-setup">Setup guide</a>
+    </div>
+  </div>
+  <button class="tog" onclick="toggleTheme()" id="tog-btn">☀ Light mode</button>
+</nav>
+
+<div class="hero">
+  <h1>StarVLA on Robotis SG2 AI Worker</h1>
+  <p>Ongoing simulation study of closed-loop vision-language-action control for dual-arm humanoid manipulation — state-free vs state-conditioned inference in NVIDIA IsaacLab.</p>
+  <div class="hero-meta">
+    <div class="meta"><strong>Robot</strong> Robotis SG2 AI Worker</div>
+    <div class="meta"><strong>Simulator</strong> NVIDIA IsaacLab</div>
+    <div class="meta"><strong>Model</strong> StarVLA — Qwen2.5-VL-3B + DiT-B</div>
+    <div class="meta"><strong>Dataset</strong> 2,000 demos · 306,766 transitions</div>
+    <div class="meta"><strong>GPU</strong> RTX 5090 32GB</div>
+  </div>
+  <div class="attr">
+    This work uses <a href="https://github.com/starVLA/starVLA" target="_blank">StarVLA</a> developed by the HKUST team. We deploy and evaluate it on the Robotis SG2 AI Worker as an independent simulation study prior to real-robot transfer.
+  </div>
+</div>
+
+<!-- Results -->
+<div class="sec" id="results">
+  <h2>Key results</h2>
+  <p class="sec-sub">50 fully randomized trials per variant — object position (8 slots), lighting, background, pegboard location, and robot initial pose all randomized each episode. Task: <em>"Put the yellow paint brush into the crate."</em></p>
+
+  <div class="mgrid">
+    <div class="mc"><div class="lbl">State-free success</div><div class="val c-ns">52%</div><div class="sub">26 / 50 · 200k steps</div></div>
+    <div class="mc"><div class="lbl">State-cond. success</div><div class="val c-st">28%</div><div class="sub">14 / 50 · 30k steps</div></div>
+    <div class="mc"><div class="lbl">Gap</div><div class="val c-ok">+24pp</div><div class="sub">state-free advantage</div></div>
+    <div class="mc"><div class="lbl">Self-correction ✦</div><div class="val c-ns">14%</div><div class="sub">state-free only · 0% state-cond.</div></div>
+    <div class="mc"><div class="lbl">Wrong arm ✦</div><div class="val c-st">24%</div><div class="sub">state-cond. only · 0% state-free</div></div>
+    <div class="mc"><div class="lbl">Optimal checkpoints</div><div class="val" style="font-size:1.2rem;color:var(--text)">200k / 30k</div><div class="sub">nostate / state steps</div></div>
+  </div>
+
+  <div class="bcols">
+    <div>
+      <h4 style="color:var(--ns)">State-free — 200k steps</h4>
+      <div class="bg"><div class="bl"><span>Full success</span><span>26 (52%)</span></div><div class="bw"><div class="bf" style="width:52%;background:var(--ns)">52%</div></div></div>
+      <div class="bg"><div class="bl"><span>Self-corrected ✦</span><span>7 (14%)</span></div><div class="bw"><div class="bf" style="width:14%;background:var(--ns);opacity:.7">14%</div></div></div>
+      <div class="bg"><div class="bl"><span>Object fell</span><span>7 (14%)</span></div><div class="bw"><div class="bf" style="width:14%;background:#64748b">14%</div></div></div>
+      <div class="bg"><div class="bl"><span>Outside basket</span><span>6 (12%)</span></div><div class="bw"><div class="bf" style="width:12%;background:#64748b">12%</div></div></div>
+      <div class="bg"><div class="bl"><span>Failed grasp</span><span>4 (8%)</span></div><div class="bw"><div class="bf" style="width:8%;background:#64748b">8%</div></div></div>
+      <div class="bg"><div class="bl"><span>Wrong arm</span><span>0 (0%)</span></div><div class="bw"><div class="bf" style="width:1%;background:#333"></div></div></div>
+    </div>
+    <div>
+      <h4 style="color:var(--st)">State-conditioned — 30k steps</h4>
+      <div class="bg"><div class="bl"><span>Full success</span><span>14 (28%)</span></div><div class="bw"><div class="bf" style="width:28%;background:var(--st)">28%</div></div></div>
+      <div class="bg"><div class="bl"><span>Failed grasp</span><span>12 (24%)</span></div><div class="bw"><div class="bf" style="width:24%;background:var(--danger)">24%</div></div></div>
+      <div class="bg"><div class="bl"><span>Wrong arm ✦</span><span>12 (24%)</span></div><div class="bw"><div class="bf" style="width:24%;background:#7f1d1d">24%</div></div></div>
+      <div class="bg"><div class="bl"><span>Wrong object</span><span>7 (14%)</span></div><div class="bw"><div class="bf" style="width:14%;background:#64748b">14%</div></div></div>
+      <div class="bg"><div class="bl"><span>Outside basket</span><span>3 (6%)</span></div><div class="bw"><div class="bf" style="width:6%;background:#64748b">6%</div></div></div>
+      <div class="bg"><div class="bl"><span>Object fell</span><span>2 (4%)</span></div><div class="bw"><div class="bf" style="width:4%;background:#64748b">4%</div></div></div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <h4>✦ Notable findings</h4>
+    <p><strong style="color:var(--ns)">Self-correction (state-free only):</strong> In 14% of trials the robot approached the wrong object, then visually re-assessed at the next chunk boundary and redirected to the correct target. Zero self-corrections in the state-conditioned variant.</p>
+    <p><strong style="color:var(--st)">Wrong arm failure (state-conditioned only):</strong> In 24% of trials the robot attempted to grasp a left-side object with the right arm — physically impossible and never demonstrated in training. Joint state conditioning corrupts the spatial reasoning the VLM would otherwise perform from the image.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- Videos -->
+<div class="sec" id="videos">
+  <h2>Video demonstrations</h2>
+  <p class="sec-sub">All trials use fully randomized scenes. Videos are in the <code>videos/</code> folder of this repo.</p>
+  <div class="vgrid">
+    <div class="vc">
+      <video controls preload="metadata"><source src="videos/state_free_demo.mp4" type="video/mp4">Video not available.</video>
+      <div class="vi"><div class="vb vb-ns">State-free · 200k steps</div><h4>State-free inference</h4><p>Policy conditions on camera + language only. Watch for self-correction — arm redirects mid-episode after visual re-assessment.</p></div>
+    </div>
+    <div class="vc">
+      <video controls preload="metadata"><source src="videos/state_conditioned_demo.mp4" type="video/mp4">Video not available.</video>
+      <div class="vi"><div class="vb vb-st">State-conditioned · 30k steps</div><h4>State-conditioned inference</h4><p>Policy additionally receives sin-cos encoded joint positions. Shows wrong arm selection and object misidentification failure modes.</p></div>
+    </div>
+    <div class="vc">
+      <video controls preload="metadata"><source src="videos/state_400k_unstable.mp4" type="video/mp4">Video not available.</video>
+      <div class="vi"><div class="vb vb-w">Overconfident · 400k steps</div><h4>Beyond optimal checkpoint</h4><p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints. State-conditioned at 400k steps shown here.</p></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- How we did it -->
+<div class="sec" id="how-we-did-it">
+  <h2>How we implemented state-free and state-conditioned inference</h2>
+  <p class="sec-sub">Two StarVLA variants fine-tuned on identical data with identical hyperparameters. The only difference is whether proprioceptive joint state is provided as a model input — both during fine-tuning and at inference.</p>
+
+  <div class="two">
+    <div class="card ns">
+      <h3 style="color:var(--ns)">State-free variant</h3>
+      <p>Camera image + language only. No joint positions provided at any stage.</p>
+      <ul>
+        <li>Checkpoint: <code>steps_200000_pytorch_model.pt</code></li>
+        <li>Training precision: bfloat16</li>
+        <li>state_dim config: 19 (unused)</li>
+        <li>Server flag: <code>--use_bf16</code></li>
+        <li>Bridge: no <code>state=</code> argument</li>
+      </ul>
+    </div>
+    <div class="card st">
+      <h3 style="color:var(--st)">State-conditioned variant</h3>
+      <p>Camera image + language + 19 joint positions sin-cos encoded into 38 dimensions.</p>
+      <ul>
+        <li>Checkpoint: <code>steps_30000_pytorch_model.pt</code></li>
+        <li>Training precision: float32</li>
+        <li>state_dim config: 38 (sin-cos)</li>
+        <li>Server flag: none (float32 by default)</li>
+        <li>Bridge: <code>state=joint_pos</code> argument</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">The one-line difference in the inference bridge</h3>
+  <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">In <code>scripts/inference/starvla_inference.py</code>, find the <code>get_action</code> call:</p>
+  <div class="drow">
+    <div class="dc">
+      <div class="dl" style="color:var(--ns)">State-free — omit state= argument</div>
+      <pre><code>action_chunk_norm = starvla_client.get_action(
+    image=cam_image,
+    lang=task_description,
+    <span class="cm"># no state= argument</span>
+)</code></pre>
+    </div>
+    <div class="dc">
+      <div class="dl" style="color:var(--st)">State-conditioned — add state= argument</div>
+      <pre><code>action_chunk_norm = starvla_client.get_action(
+    image=cam_image,
+    lang=task_description,
+    <span class="add">state=joint_pos,   # ← add this line</span>
+)</code></pre>
+    </div>
+  </div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Matching server checkpoint to inference mode</h3>
+  <table class="tbl">
+    <tr><th>Mode</th><th>Server command</th><th>Bridge call</th></tr>
+    <tr><td>State-free</td><td><code>steps_200000 --use_bf16</code></td><td>no <code>state=</code></td></tr>
+    <tr><td>State-conditioned</td><td><code>steps_30000</code> (no bf16 flag)</td><td><code>state=joint_pos</code></td></tr>
+  </table>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Sin-cos state encoding — why 19 becomes 38</h3>
+  <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">Each joint angle is replaced by its sine and cosine, doubling the dimension. This preserves angular continuity — joints at +π and −π map to the same point in sin-cos space.</p>
+  <div class="cb"><div class="ch"><span class="lang">python</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+  <pre><code><span class="cm"># 19 joint angles → 38-dim sin-cos vector</span>
+<span class="cm"># Groups: left_arm (0-6), left_gripper (7),</span>
+<span class="cm">#         right_arm (8-14), right_gripper (15), head (16-17), lift (18)</span>
+def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
+    parts = []
+    for sl in [slice(0,7), slice(7,8), slice(8,15),
+               slice(15,16), slice(16,18), slice(18,19)]:
+        parts.append(np.sin(state[sl]))
+        parts.append(np.cos(state[sl]))
+    return np.concatenate(parts).astype(np.float32)</code></pre></div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Why state-free works better</h3>
+  <div class="insight">
+    <h4>Fine-tuning — inference distribution mismatch</h4>
+    <p>StarVLA was fine-tuned with <code>obs: ["image_0"]</code> and <code>use_proprio: false</code>. Although the training dataset records joint state for every transition, the pipeline deliberately excluded it. The state-free model matches its training distribution exactly at inference. The camera provides implicit proprioception — arm positions are visible, object distances can be estimated from apparent size, and gripper state is directly observable. Any drift in one 16-step chunk is corrected when the next chunk is conditioned on the updated visual scene.</p>
+  </div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Checkpoint selection finding</h3>
+  <div class="two">
+    <div class="card"><h3 style="color:var(--ns)">State-free: optimal at 200k steps</h3><p style="font-size:.83rem">Trained to 400k but best at 200k. Beyond this the model overfits to training positions and fails to generalize to randomized object locations and lighting.</p></div>
+    <div class="card"><h3 style="color:var(--st)">State-conditioned: optimal at 30k steps</h3><p style="font-size:.83rem">The harder joint state + visual learning problem leads to earlier overfitting. Model degrades rapidly after 30k — producing overconfident, spatially erratic outputs.</p></div>
+  </div>
+</div>
+
+<hr>
+
+<!-- Offline benchmark -->
+<div class="sec" id="benchmark">
+  <h2>Offline action prediction benchmark</h2>
+  <p class="sec-sub">Evaluated on 50 held-out episodes (250 frames). Predicted actions compared against ground-truth demonstration actions. No simulation required.</p>
+  <div class="bgrid">
+    <div class="card">
+      <h3 style="color:var(--ns)">State-free — 200k steps</h3>
+      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--ns)">0.0755 ± 0.038 rad</span></div>
+      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--ns)">0.1199 rad</span></div>
+      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--ns)">8.49% of range</span></div>
+      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0788 rad</span></div>
+      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0822 rad</span></div>
+      <div class="br"><span class="k">Head MAE</span><span class="v">0.0230 rad</span></div>
+      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0155</span></div>
+      <div class="br"><span class="k">Simulation success</span><span class="v win">52%</span></div>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--st)">State-conditioned — 30k steps</h3>
+      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--st)">0.0491 ± 0.021 rad</span></div>
+      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--st)">0.0822 rad</span></div>
+      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--st)">5.44% of range</span></div>
+      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0527 rad</span></div>
+      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0420 rad</span></div>
+      <div class="br"><span class="k">Head MAE</span><span class="v">0.0151 rad</span></div>
+      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0200</span></div>
+      <div class="br"><span class="k">Simulation success</span><span class="v" style="color:var(--danger)">28%</span></div>
+    </div>
+  </div>
+  <div class="insight">
+    <h4>Offline MAE does not predict deployment performance</h4>
+    <p>The state-conditioned model achieves lower offline MAE (0.0491 vs 0.0755 rad) yet only 28% simulation success vs 52% for state-free. This demonstrates the offline-to-online gap: lower prediction error on training data does not imply better generalization to randomized scenes. The state-free model learns a more robust visual policy rather than memorizing joint trajectories.</p>
+  </div>
+</div>
+
+<hr>
+
+<!-- GUI -->
+<div class="sec" id="gui">
+  <h2>Web GUI for simulation control</h2>
+  <p class="sec-sub">FastAPI + WebSocket browser interface for submitting tasks, monitoring execution, and controlling the simulation without terminal access.</p>
+  <div class="ggrid">
+    <div class="gf"><div class="ico">⌨</div><h4>Task input</h4><p>Free-form language instruction sent to the robot in real time.</p></div>
+    <div class="gf"><div class="ico">⚡</div><h4>Quick tasks</h4><p>Pre-configured buttons for common task descriptions.</p></div>
+    <div class="gf"><div class="ico">↺</div><h4>Reset</h4><p>Resets IsaacLab and randomizes all scene parameters.</p></div>
+    <div class="gf"><div class="ico">⏸</div><h4>Stop</h4><p>Halts execution — robot holds current pose.</p></div>
+    <div class="gf"><div class="ico">📡</div><h4>Live status</h4><p>WebSocket shows real-time execution status.</p></div>
+    <div class="gf"><div class="ico">📋</div><h4>Task history</h4><p>Logs all submitted tasks with timestamps.</p></div>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px">
+    <h4 style="margin-bottom:9px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.7px">Start the GUI</h4>
+    <div class="cb"><div class="ch"><span class="lang">bash</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+    <pre><code>python scripts/server.py
+<span class="cm"># Open: http://localhost:8000</span></code></pre></div>
+    <p style="font-size:.83rem;color:var(--muted);margin-top:9px">The GUI writes instructions to <code>/tmp/groot_task.txt</code>. The inference loop polls this every simulation step at 60 Hz. Special commands <code>__RESET__</code> and <code>__STOP__</code> control the environment without interrupting simulation.</p>
+  </div>
+</div>
+
+<div style="padding:28px 40px;text-align:center;color:var(--muted);font-size:.78rem;border-top:1px solid var(--border)">
+  <p>Uses <a href="https://github.com/starVLA/starVLA" style="color:var(--accent);text-decoration:none">StarVLA</a> by the HKUST team · Deployed on Robotis SG2 AI Worker · NVIDIA IsaacLab · Ongoing study</p>
+  <p style="margin-top:4px">Designed by <strong style="color:var(--text)">Sam</strong></p>
+  <p style="margin-top:5px">
+    <a href="https://yourname.github.io/starvla-setup" style="color:var(--accent);text-decoration:none;margin:0 9px">Setup guide</a>
+    <a href="https://github.com/starVLA/starVLA" style="color:var(--accent);text-decoration:none;margin:0 9px">StarVLA repo ↗</a>
+    <a href="#" style="color:var(--accent);text-decoration:none;margin:0 9px">Paper</a>
+  </p>
+</div>
+
+<script>
+function cp(btn){const p=btn.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.innerText);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);}
+function toggleTheme(){const h=document.documentElement;const isDark=h.getAttribute('data-theme')==='dark';h.setAttribute('data-theme',isDark?'light':'dark');document.getElementById('tog-btn').textContent=isDark?'🌙 Dark mode':'☀ Light mode';localStorage.setItem('theme',isDark?'light':'dark');}
+(function(){const t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('tog-btn').textContent=t==='light'?'🌙 Dark mode':'☀ Light mode';}})();
+</script>
+</body>
+</html>
