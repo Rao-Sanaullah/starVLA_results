@@ -268,31 +268,40 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
   </div>
 </div>
 
-  <!-- Row 2: State-conditioned — two videos -->
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-st" style="font-size:.78rem">State-conditioned · 30k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Two representative trials — wrong arm and wrong object failures</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:180px">
-        <source src="videos/state_conditioned_demo.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi">
-        <h4>Wrong arm failure</h4>
-        <p>Robot attempts to grasp a left-side object using the right arm — physically impossible and never demonstrated in training. Joint state conditioning overrides visual spatial reasoning.</p>
-      </div>
-    </div>
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:180px">
-        <source src="videos/state_conditioned_wrongobj.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi">
-        <h4>Wrong object failure</h4>
-        <p>Robot confidently grasps the incorrect object despite the paint brush being visible in the scene, suggesting degraded visual grounding from joint state conditioning.</p>
-      </div>
+<!-- Row 2: State-conditioned — three videos -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-st" style="font-size:.78rem">State-conditioned · 30k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Three representative trials — wrong arm and wrong object failures</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-1.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Wrong arm failure</h4>
+      <p>Robot attempts to grasp a left-side object using the right arm — physically impossible and never demonstrated in training. Joint state conditioning overrides visual spatial reasoning.</p>
     </div>
   </div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-2.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Wrong object failure</h4>
+      <p>Robot confidently grasps the incorrect object despite the paint brush being visible in the scene, suggesting degraded visual grounding from joint state conditioning.</p>
+    </div>
+  </div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-3.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Additional failure trial</h4>
+      <p>Robot confidently grasps the incorrect object despite the paint brush being visible in the scene, suggesting degraded visual grounding from joint state conditioning.</p>
+    </div>
+  </div>
+</div>
 
   <!-- Row 3: Overconfident 400k — single centred video -->
   <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
