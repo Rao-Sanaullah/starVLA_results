@@ -243,30 +243,30 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
   <p class="sec-sub">Task: <em>"Put the yellow paint brush into the crate."</em> — object position, lighting, background, pegboard location, and robot initial pose all randomized each episode.</p>
 
   <!-- Row 1: State-free — two videos -->
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-ns" style="font-size:.78rem">State-free · 200k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Two representative trials — success and self-correction</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:280px">
-        <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/starvla-nostate-1.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi">
-        <h4>Successful trial</h4>
-        <p>Robot correctly identifies the paint brush, selects the appropriate arm, grasps, and places it into the crate in a single continuous motion.</p>
-      </div>
-    </div>
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:280px">
-        <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/starvla-nostate-2.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi">
-        <h4>Self-correction trial</h4>
-        <p>Robot initially approaches the wrong object, visually re-assesses at the next chunk boundary, then redirects to grasp the correct target.</p>
-      </div>
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-ns" style="font-size:.78rem">State-free · 200k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Two representative trials — success and self-correction</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:280px">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-left-side.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Successful trial</h4>
+      <p>Robot correctly identifies the paint brush, selects the appropriate arm, grasps, and places it into the crate in a single continuous motion.</p>
     </div>
   </div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:280px">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-right-side.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Self-correction trial</h4>
+      <p>Robot initially approaches the wrong object, visually re-assesses at the next chunk boundary, then redirects to grasp the correct target.</p>
+    </div>
+  </div>
+</div>
 
   <!-- Row 2: State-conditioned — two videos -->
   <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
