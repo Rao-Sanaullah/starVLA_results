@@ -313,42 +313,6 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
 
 <hr>
 
-<!-- Offline benchmark -->
-<div class="sec" id="benchmark">
-  <h2>Offline action prediction benchmark</h2>
-  <p class="sec-sub">Evaluated on 50 held-out episodes (250 frames). Predicted actions compared against ground-truth demonstration actions. No simulation required.</p>
-  <div class="bgrid">
-    <div class="card">
-      <h3 style="color:var(--ns)">State-free — 200k steps</h3>
-      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--ns)">0.0755 ± 0.038 rad</span></div>
-      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--ns)">0.1199 rad</span></div>
-      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--ns)">8.49% of range</span></div>
-      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0788 rad</span></div>
-      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0822 rad</span></div>
-      <div class="br"><span class="k">Head MAE</span><span class="v">0.0230 rad</span></div>
-      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0155</span></div>
-      <div class="br"><span class="k">Simulation success</span><span class="v win">52%</span></div>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--st)">State-conditioned — 30k steps</h3>
-      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--st)">0.0491 ± 0.021 rad</span></div>
-      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--st)">0.0822 rad</span></div>
-      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--st)">5.44% of range</span></div>
-      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0527 rad</span></div>
-      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0420 rad</span></div>
-      <div class="br"><span class="k">Head MAE</span><span class="v">0.0151 rad</span></div>
-      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0200</span></div>
-      <div class="br"><span class="k">Simulation success</span><span class="v" style="color:var(--danger)">28%</span></div>
-    </div>
-  </div>
-  <div class="insight">
-    <h4>Offline MAE does not predict deployment performance</h4>
-    <p>The state-conditioned model achieves lower offline MAE (0.0491 vs 0.0755 rad) yet only 28% simulation success vs 52% for state-free. This demonstrates the offline-to-online gap: lower prediction error on training data does not imply better generalization to randomized scenes. The state-free model learns a more robust visual policy rather than memorizing joint trajectories.</p>
-  </div>
-</div>
-
-<hr>
-
 <!-- GUI -->
 <div class="sec" id="gui">
   <h2>Web GUI for simulation control</h2>
@@ -361,6 +325,20 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
     <div class="gf"><div class="ico">📡</div><h4>Live status</h4><p>WebSocket shows real-time execution status.</p></div>
     <div class="gf"><div class="ico">📋</div><h4>Task history</h4><p>Logs all submitted tasks with timestamps.</p></div>
   </div>
+
+  <!-- GUI screenshot -->
+  <div style="margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+    <img
+      src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/GUI.png"
+      alt="StarVLA web GUI showing task input, quick task buttons, reset and stop controls, and live status log"
+      style="width:100%;display:block;"
+      loading="lazy"
+    />
+    <div style="padding:10px 16px;background:var(--card);font-size:.78rem;color:var(--muted)">
+      Web GUI running on <code>http://localhost:8000</code> — task input, quick task buttons, reset/stop controls, and live WebSocket status log.
+    </div>
+  </div>
+
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px">
     <h4 style="margin-bottom:9px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.7px">Start the GUI</h4>
     <div class="cb"><div class="ch"><span class="lang">bash</span><button class="cpb" onclick="cp(this)">Copy</button></div>
