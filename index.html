@@ -204,24 +204,117 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 
 <hr>
 
+<!-- Dataset -->
+<div class="sec" id="dataset">
+  <h2>Dataset</h2>
+  <p class="sec-sub">FFW-SG2 demonstration dataset collected on the physical Robotis SG2 AI Worker via kinesthetic teaching.</p>
+
+  <div class="mgrid" style="margin-bottom:24px">
+    <div class="mc"><div class="lbl">Total episodes</div><div class="val" style="color:var(--accent)">2,000</div><div class="sub">demonstrations</div></div>
+    <div class="mc"><div class="lbl">Transitions</div><div class="val" style="color:var(--accent)">306,766</div><div class="sub">state-action pairs</div></div>
+    <div class="mc"><div class="lbl">Avg length</div><div class="val" style="color:var(--accent)">153</div><div class="sub">steps per episode</div></div>
+    <div class="mc"><div class="lbl">Control rate</div><div class="val" style="color:var(--accent)">10</div><div class="sub">fps recording</div></div>
+    <div class="mc"><div class="lbl">Action space</div><div class="val" style="color:var(--accent)">19</div><div class="sub">DOF joint targets</div></div>
+    <div class="mc"><div class="lbl">Resolution</div><div class="val" style="color:var(--accent)">376×672</div><div class="sub">RGB head camera</div></div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h3 style="font-size:.88rem;margin-bottom:10px">Task</h3>
+      <p style="font-size:.88rem;color:var(--muted);font-style:italic;margin-bottom:8px">"Put the yellow paint brush into the crate."</p>
+      <p style="font-size:.82rem;color:var(--muted)">Robot identifies target among multiple objects on an 8-slot pegboard, selects correct arm by object position, grasps, lifts, transports, and places into crate.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.88rem;margin-bottom:10px">Format</h3>
+      <div class="br"><span class="k">Format</span><span class="v">LeRobot v2.1</span></div>
+      <div class="br"><span class="k">Data files</span><span class="v">Parquet per episode</span></div>
+      <div class="br"><span class="k">Video codec</span><span class="v">AV1 · 376×672 · 10 fps</span></div>
+      <div class="br"><span class="k">Chunks</span><span class="v">2 × 1,000 episodes</span></div>
+      <div class="br"><span class="k">Train split</span><span class="v">All 2,000 episodes</span></div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
 <!-- Videos -->
 <div class="sec" id="videos">
   <h2>Video demonstrations</h2>
-  <p class="sec-sub">All trials use fully randomized scenes. Videos are in the <code>videos/</code> folder of this repo.</p>
-  <div class="vgrid">
+  <p class="sec-sub">Task: <em>"Put the yellow paint brush into the crate."</em> — object position, lighting, background, pegboard location, and robot initial pose all randomized each episode.</p>
+
+  <!-- Row 1: State-free — two videos -->
+  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+    <span class="vb vb-ns" style="font-size:.78rem">State-free · 200k steps</span>
+    <span style="font-size:.82rem;color:var(--muted)">Two representative trials — success and self-correction</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
     <div class="vc">
-      <video controls preload="metadata"><source src="videos/state_free_demo.mp4" type="video/mp4">Video not available.</video>
-      <div class="vi"><div class="vb vb-ns">State-free · 200k steps</div><h4>State-free inference</h4><p>Policy conditions on camera + language only. Watch for self-correction — arm redirects mid-episode after visual re-assessment.</p></div>
+      <video controls preload="metadata" style="max-height:180px">
+        <source src="videos/state_free_demo.mp4" type="video/mp4">Video not available.
+      </video>
+      <div class="vi">
+        <h4>Successful trial</h4>
+        <p>Robot correctly identifies the paint brush, selects the appropriate arm, grasps, and places into the crate in a single continuous motion.</p>
+      </div>
     </div>
     <div class="vc">
-      <video controls preload="metadata"><source src="videos/state_conditioned_demo.mp4" type="video/mp4">Video not available.</video>
-      <div class="vi"><div class="vb vb-st">State-conditioned · 30k steps</div><h4>State-conditioned inference</h4><p>Policy additionally receives sin-cos encoded joint positions. Shows wrong arm selection and object misidentification failure modes.</p></div>
-    </div>
-    <div class="vc">
-      <video controls preload="metadata"><source src="videos/state_400k_unstable.mp4" type="video/mp4">Video not available.</video>
-      <div class="vi"><div class="vb vb-w">Overconfident · 400k steps</div><h4>Beyond optimal checkpoint</h4><p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints. State-conditioned at 400k steps shown here.</p></div>
+      <video controls preload="metadata" style="max-height:180px">
+        <source src="videos/state_free_selfcorrect.mp4" type="video/mp4">Video not available.
+      </video>
+      <div class="vi">
+        <h4>Self-correction trial</h4>
+        <p>Robot initially approaches the wrong object, visually re-assesses at the next chunk boundary, then redirects to grasp the correct target.</p>
+      </div>
     </div>
   </div>
+
+  <!-- Row 2: State-conditioned — two videos -->
+  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+    <span class="vb vb-st" style="font-size:.78rem">State-conditioned · 30k steps</span>
+    <span style="font-size:.82rem;color:var(--muted)">Two representative trials — wrong arm and wrong object failures</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+    <div class="vc">
+      <video controls preload="metadata" style="max-height:180px">
+        <source src="videos/state_conditioned_demo.mp4" type="video/mp4">Video not available.
+      </video>
+      <div class="vi">
+        <h4>Wrong arm failure</h4>
+        <p>Robot attempts to grasp a left-side object using the right arm — physically impossible and never demonstrated in training. Joint state conditioning overrides visual spatial reasoning.</p>
+      </div>
+    </div>
+    <div class="vc">
+      <video controls preload="metadata" style="max-height:180px">
+        <source src="videos/state_conditioned_wrongobj.mp4" type="video/mp4">Video not available.
+      </video>
+      <div class="vi">
+        <h4>Wrong object failure</h4>
+        <p>Robot confidently grasps the incorrect object despite the paint brush being visible in the scene, suggesting degraded visual grounding from joint state conditioning.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Overconfident 400k — single centred video -->
+  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+    <span class="vb vb-w" style="font-size:.78rem">Overconfident · 400k steps</span>
+    <span style="font-size:.82rem;color:var(--muted)">Both models beyond optimal checkpoint — erratic behaviour</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px">
+    <div></div>
+    <div class="vc">
+      <video controls preload="metadata" style="max-height:180px">
+        <source src="videos/state_400k_unstable.mp4" type="video/mp4">Video not available.
+      </video>
+      <div class="vi">
+        <h4>Beyond optimal checkpoint</h4>
+        <p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints — 200k for state-free, 30k for state-conditioned. This video shows the state-conditioned model at 400k steps.</p>
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:4px">
+    Video files are in the <code>videos/</code> folder of this repository.
+  </p>
 </div>
 
 <hr>
