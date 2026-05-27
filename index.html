@@ -303,27 +303,27 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
   </div>
 </div>
 
-  <!-- Row 3: Overconfident 400k — single centred video -->
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-w" style="font-size:.78rem">Overconfident · 400k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Both models beyond optimal checkpoint — erratic behaviour</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px">
-    <div></div>
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:180px">
-        <source src="videos/state_400k_unstable.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi">
-        <h4>Beyond optimal checkpoint</h4>
-        <p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints — 200k for state-free, 30k for state-conditioned. This video shows the state-conditioned model at 400k steps.</p>
-      </div>
+<!-- Row 3: Overconfident 400k — single centred video -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-w" style="font-size:.78rem">Overconfident · 400k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Both models beyond optimal checkpoint — erratic behaviour</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:8px">
+  <div></div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/with-state-200k-unstable.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Beyond optimal checkpoint</h4>
+      <p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints — 200k for state-free, 30k for state-conditioned. This video shows the state-conditioned model at 400k steps.</p>
     </div>
-    <div></div>
   </div>
-  <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:4px">
-    Video files are in the <code>videos/</code> folder of this repository.
-  </p>
+  <div></div>
+</div>
+<p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:4px">
+  Video files are hosted via Git LFS in this repository.
+</p>
 </div>
 
 <hr>
