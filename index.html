@@ -407,47 +407,62 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
 
 <!-- Checkpoint sweep -->
 
-<!-- Checkpoint sweep -->
 <div class="sec" id="checkpoint-sweep">
   <h2>Checkpoint selection analysis</h2>
   <p class="sec-sub">Offline action prediction error across training checkpoints — evaluated on 10 dataset episodes without simulation. Shows where each model peaks and degrades.</p>
 
-  <!-- State-free row -->
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <!-- State-free -->
+  <div style="margin-bottom:12px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-ns">State-free</span>
     <span style="font-size:.82rem;color:var(--muted)">Peaks at 200k steps · degrades gradually · optimal MAE = 0.071 rad</span>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:10px">
+
+  <div style="margin-bottom:8px">
     <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state-free.png"
-         alt="State-free metrics" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
-    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png"
-         alt="State-free combined MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
-    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png"
-         alt="State-free group MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:32px">
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">MAE · RMSE · Normalized MAE vs steps</div>
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">Overall MAE with error bars</div>
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">Per joint group MAE vs steps</div>
+         alt="State-free MAE RMSE normalized MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">MAE · RMSE · Normalized MAE vs training steps</div>
   </div>
 
-  <!-- State-conditioned row -->
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <div style="margin-bottom:8px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png"
+         alt="State-free overall MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">Overall MAE with error bars</div>
+  </div>
+
+  <div style="margin-bottom:32px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png"
+         alt="State-free per-group MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">Per joint group MAE vs training steps</div>
+  </div>
+
+  <!-- State-conditioned -->
+  <div style="margin-bottom:12px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-st">State-conditioned</span>
     <span style="font-size:.82rem;color:var(--muted)">Peaks at 30k–50k steps · collapses rapidly · MAE triples by 100k steps</span>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:10px">
+
+  <div style="margin-bottom:8px">
     <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state.png"
-         alt="State-conditioned metrics" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
-    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png"
-         alt="State-conditioned combined MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
-    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png"
-         alt="State-conditioned group MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+         alt="State-conditioned MAE RMSE normalized MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">MAE · RMSE · Normalized MAE vs training steps</div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">MAE · RMSE · Normalized MAE vs steps</div>
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">Overall MAE with error bars</div>
-    <div style="font-size:.73rem;color:var(--muted);text-align:center">Per joint group MAE vs steps</div>
+
+  <div style="margin-bottom:8px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png"
+         alt="State-conditioned overall MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">Overall MAE with error bars</div>
+  </div>
+
+  <div style="margin-bottom:28px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png"
+         alt="State-conditioned per-group MAE vs checkpoint"
+         style="width:100%;border-radius:8px;border:1px solid var(--border);display:block" loading="lazy"/>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center;margin-top:5px">Per joint group MAE vs training steps</div>
   </div>
 
   <div class="insight">
