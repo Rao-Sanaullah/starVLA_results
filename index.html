@@ -406,90 +406,62 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
 
 
 <!-- Checkpoint sweep -->
+
+<!-- Checkpoint sweep -->
 <div class="sec" id="checkpoint-sweep">
   <h2>Checkpoint selection analysis</h2>
   <p class="sec-sub">Offline action prediction error across training checkpoints — evaluated on 10 dataset episodes without simulation. Shows where each model peaks and degrades.</p>
 
-  <!-- State-free -->
+  <!-- State-free row -->
   <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-ns">State-free</span>
-    <span style="font-size:.82rem;color:var(--muted)">Peaks at 200k steps · degrades gradually after · optimal MAE = 0.071 rad</span>
+    <span style="font-size:.82rem;color:var(--muted)">Peaks at 200k steps · degrades gradually · optimal MAE = 0.071 rad</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:10px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state-free.png"
+         alt="State-free metrics" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png"
+         alt="State-free combined MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png"
+         alt="State-free group MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:32px">
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">MAE · RMSE · Normalized MAE vs steps</div>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">Overall MAE with error bars</div>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">Per joint group MAE vs steps</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state-free.png"
-           alt="State-free MAE RMSE normalized MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        MAE · RMSE · Normalized MAE vs steps
-      </div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png"
-           alt="State-free combined MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        Overall MAE with error bars
-      </div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png"
-           alt="State-free per-group MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        Per joint group MAE vs steps
-      </div>
-    </div>
-  </div>
-
-  <!-- State-conditioned -->
+  <!-- State-conditioned row -->
   <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-st">State-conditioned</span>
-    <span style="font-size:.82rem;color:var(--muted)">Peaks at 30k–50k steps · collapses rapidly after · MAE triples by 100k steps</span>
+    <span style="font-size:.82rem;color:var(--muted)">Peaks at 30k–50k steps · collapses rapidly · MAE triples by 100k steps</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:10px">
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state.png"
+         alt="State-conditioned metrics" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png"
+         alt="State-conditioned combined MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png"
+         alt="State-conditioned group MAE" style="width:100%;border-radius:8px;border:1px solid var(--border)" loading="lazy"/>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">MAE · RMSE · Normalized MAE vs steps</div>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">Overall MAE with error bars</div>
+    <div style="font-size:.73rem;color:var(--muted);text-align:center">Per joint group MAE vs steps</div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state.png"
-           alt="State-conditioned MAE RMSE normalized MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        MAE · RMSE · Normalized MAE vs steps
-      </div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png"
-           alt="State-conditioned combined MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        Overall MAE with error bars
-      </div>
-    </div>
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png"
-           alt="State-conditioned per-group MAE vs checkpoint"
-           style="width:100%;display:block" loading="lazy"/>
-      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
-        Per joint group MAE vs steps
-      </div>
-    </div>
-  </div>
-
-  <!-- Key findings -->
   <div class="insight">
     <h4>Key findings</h4>
-    <p><strong style="color:var(--ns)">State-free:</strong> Improves steadily from 50k (MAE = 0.100 rad) to its optimal at 200k steps (MAE = 0.071 rad), then degrades gradually — reaching 0.239 rad at 350k. Degradation is gradual with spikes only at chunk boundaries.</p>
-    <p style="margin-top:6px"><strong style="color:var(--st)">State-conditioned:</strong> Peaks at 30k–50k steps (MAE ≈ 0.047 rad) then collapses to 0.237 rad at 100k, plateauing at ~0.30 rad from 200k to 400k. The cliff-edge degradation after 50k confirms that continued training actively destroys the learned policy. By 400k the normalized MAE reaches 32% of the action range — predictions are off by nearly a third of the usable joint space.</p>
+    <p><strong style="color:var(--ns)">State-free:</strong> Improves steadily from 50k (MAE = 0.100 rad) to optimal at 200k (MAE = 0.071 rad), then degrades gradually — reaching 0.239 rad at 350k.</p>
+    <p style="margin-top:6px"><strong style="color:var(--st)">State-conditioned:</strong> Peaks at 30k–50k (MAE ≈ 0.047 rad) then collapses to 0.237 rad at 100k, plateauing at ~0.30 rad from 200k to 400k. By 400k normalized MAE reaches 32% of the action range.</p>
   </div>
 
-  <!-- Comparison table -->
-  <table class="tbl" style="margin-top:20px">
-    <tr><th>Metric</th><th>State-free optimal (200k)</th><th>State-cond. optimal (30k)</th><th>State-free 400k</th><th>State-cond. 400k</th></tr>
+  <table class="tbl" style="margin-top:16px">
+    <tr><th>Metric</th><th>State-free best (200k)</th><th>State-cond. best (30k)</th><th>State-free 400k</th><th>State-cond. 400k</th></tr>
     <tr><td>Overall MAE (rad)</td><td class="win">0.071</td><td>0.047</td><td>0.199</td><td>0.298</td></tr>
     <tr><td>Overall RMSE (rad)</td><td class="win">0.110</td><td>0.073</td><td>0.269</td><td>0.401</td></tr>
     <tr><td>Normalized MAE (%)</td><td class="win">8.1%</td><td>5.5%</td><td>22.3%</td><td>32.1%</td></tr>
-    <tr><td>Degradation onset</td><td>Gradual after 200k</td><td colspan="3">Cliff edge after 50k</td></tr>
+    <tr><td>Degradation</td><td colspan="2">—</td><td>Gradual after 200k</td><td>Cliff edge after 50k</td></tr>
   </table>
 </div>
 
