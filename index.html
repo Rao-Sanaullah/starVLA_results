@@ -5,17 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StarVLA — SG2 Results</title>
 <style>
-[data-theme="dark"]{--bg:#0f1117;--surface:#1a1d27;--card:#22263a;--border:#2e3450;--accent:#6c63ff;--accent2:#00d4aa;--text:#e2e8f0;--muted:#64748b;--success:#10b981;--warn:#f59e0b;--danger:#ef4444;--code-bg:#0d1117;--shadow:rgba(0,0,0,.4);--ns:#EF9F27;--st:#378ADD;--mc-bg:#22263a;--bar-bg:#1a1d27;}
-[data-theme="light"]{--bg:#f8fafc;--surface:#ffffff;--card:#ffffff;--border:#e2e8f0;--accent:#5b52f0;--accent2:#0891b2;--text:#0f172a;--muted:#64748b;--success:#059669;--warn:#d97706;--danger:#dc2626;--code-bg:#1e293b;--shadow:rgba(0,0,0,.08);--ns:#c47d0e;--st:#1d60a0;--mc-bg:#f1f5f9;--bar-bg:#e2e8f0;}
+[data-theme="dark"]{
+  --bg:#0f1117;--surface:#1a1d27;--card:#22263a;--border:#2e3450;
+  --accent:#6c63ff;--accent2:#00d4aa;--text:#e2e8f0;--muted:#64748b;
+  --success:#10b981;--warn:#f59e0b;--danger:#ef4444;--code-bg:#0d1117;
+  --shadow:rgba(0,0,0,.4);--ns:#EF9F27;--st:#378ADD;
+  --mc-bg:#22263a;--bar-bg:#1a1d27;
+}
+[data-theme="light"]{
+  --bg:#f8fafc;--surface:#ffffff;--card:#ffffff;--border:#e2e8f0;
+  --accent:#5b52f0;--accent2:#0891b2;--text:#0f172a;--muted:#64748b;
+  --success:#059669;--warn:#d97706;--danger:#dc2626;--code-bg:#1e293b;
+  --shadow:rgba(0,0,0,.08);--ns:#c47d0e;--st:#1d60a0;
+  --mc-bg:#f1f5f9;--bar-bg:#e2e8f0;
+}
 *{margin:0;padding:0;box-sizing:border-box;transition:background-color .25s,color .25s,border-color .25s;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
 nav{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 8px var(--shadow);}
 .nav-left{display:flex;align-items:center;gap:28px;}
 .nav-logo{font-size:1.1rem;font-weight:700;color:var(--accent);}
-.nav-links{display:flex;gap:16px;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;transition:color .2s;}
+.nav-links{display:flex;gap:18px;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.86rem;transition:color .2s;}
 .nav-links a:hover{color:var(--text);}
-.tog{background:var(--mc-bg);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:.8rem;color:var(--text);transition:all .2s;}
+.tog{background:var(--mc-bg);border:1px solid var(--border);border-radius:20px;padding:5px 12px;cursor:pointer;font-size:.8rem;color:var(--text);display:flex;align-items:center;gap:6px;transition:all .2s;}
 .tog:hover{border-color:var(--accent);}
 .hero{padding:68px 40px;text-align:center;border-bottom:1px solid var(--border);}
 .hero h1{font-size:2.5rem;font-weight:800;background:linear-gradient(135deg,#6c63ff,#00d4aa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px;}
@@ -30,20 +42,27 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:13px
 .sec h2{font-size:1.5rem;font-weight:700;margin-bottom:8px;}
 .sec-sub{color:var(--muted);font-size:.88rem;margin-bottom:32px;}
 hr{border:none;border-top:1px solid var(--border);}
+
+/* Metric cards */
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;margin-bottom:36px;}
 .mc{background:var(--mc-bg);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
 .mc .lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;}
 .mc .val{font-size:1.9rem;font-weight:800;}
 .mc .sub{font-size:.73rem;color:var(--muted);margin-top:3px;}
 .c-ns{color:var(--ns);}.c-st{color:var(--st);}.c-ok{color:var(--success);}
+
+/* Bars */
 .bcols{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:32px;}
 .bcol h4{font-size:.83rem;font-weight:600;margin-bottom:11px;}
 .bg{margin-bottom:9px;}
 .bl{font-size:.76rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:3px;}
 .bw{background:var(--bar-bg);border-radius:4px;height:17px;overflow:hidden;}
 .bf{height:100%;border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:.65rem;font-weight:600;color:white;white-space:nowrap;}
+
+/* Video */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;margin-bottom:32px;}
 .vc{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px var(--shadow);}
-.vc video{width:100%;display:block;background:#000;}
+.vc video{width:100%;display:block;background:#000;max-height:190px;object-fit:cover;}
 .vi{padding:14px;}
 .vi h4{font-size:.88rem;font-weight:600;margin-bottom:5px;}
 .vi p{font-size:.79rem;color:var(--muted);}
@@ -51,6 +70,8 @@ hr{border:none;border-top:1px solid var(--border);}
 .vb-ns{background:rgba(239,159,39,.13);color:var(--ns);border:1px solid var(--ns);}
 .vb-st{background:rgba(55,138,221,.13);color:var(--st);border:1px solid var(--st);}
 .vb-w{background:rgba(245,158,11,.13);color:var(--warn);border:1px solid var(--warn);}
+
+/* Code */
 .cb{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;margin:11px 0;overflow:hidden;}
 .ch{background:var(--surface);padding:7px 13px;font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
 [data-theme="light"] .ch{background:#f1f5f9;}
@@ -59,6 +80,8 @@ hr{border:none;border-top:1px solid var(--border);}
 .cpb:hover{color:var(--accent);border-color:var(--accent);}
 pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monospace;font-size:.8rem;line-height:1.65;color:#e2e8f0;}
 .cm{color:#6b7280;}.cg{color:#86efac;}.add{color:#86efac;}
+
+/* Cards */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 4px var(--shadow);}
 .card h3{font-size:.93rem;font-weight:700;margin-bottom:9px;}
@@ -71,29 +94,37 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 .br .k{color:var(--muted);}
 .br .v{font-weight:600;}
 .win{color:var(--success);font-weight:700;}
+
+/* Insight */
 .insight{background:rgba(108,99,255,.07);border:1px solid rgba(108,99,255,.22);border-radius:12px;padding:18px;margin:18px 0;}
 [data-theme="light"] .insight{background:rgba(91,82,240,.05);border-color:rgba(91,82,240,.18);}
 .insight h4{color:var(--accent);font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;}
 .insight p{color:var(--muted);font-size:.85rem;margin-bottom:6px;}
 .insight p:last-child{margin-bottom:0;}
+
+/* Table */
 .tbl{width:100%;border-collapse:collapse;font-size:.84rem;margin:11px 0;}
 .tbl th{background:var(--mc-bg);color:var(--text);padding:8px 12px;text-align:left;font-weight:600;border-bottom:2px solid var(--border);}
 .tbl td{padding:8px 12px;color:var(--muted);border-bottom:1px solid var(--border);}
 .tbl tr:hover td{background:var(--mc-bg);}
 .tbl code{background:var(--code-bg);padding:1px 5px;border-radius:3px;font-size:.77rem;color:var(--accent2);}
+
+/* Diff */
 .drow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
 .dc{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:13px;}
 .dc .dl{font-size:.72rem;font-weight:600;margin-bottom:7px;padding-bottom:5px;border-bottom:1px solid var(--border);}
 .dc pre{padding:0;font-size:.79rem;}
+
+/* GUI */
 .ggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:13px;}
 .gf{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:17px;}
 .gf .ico{font-size:1.2rem;margin-bottom:7px;}
 .gf h4{font-size:.86rem;font-weight:600;margin-bottom:4px;}
 .gf p{font-size:.78rem;color:var(--muted);}
+
+/* Bench bench */
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px;}
-.img-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-.img-card img{width:100%;display:block;}
-.img-cap{padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center;border-top:1px solid var(--border);}
+
 @media(max-width:680px){.two,.bcols,.drow,.bgrid{grid-template-columns:1fr;}.hero h1{font-size:1.9rem;}.sec{padding:36px 18px;}nav{padding:11px 18px;}.nav-links{display:none;}}
 </style>
 </head>
@@ -106,10 +137,9 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
       <a href="#results">Results</a>
       <a href="#videos">Videos</a>
       <a href="#how-we-did-it">How we did it</a>
-      <a href="#checkpoint-sweep">Checkpoints</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#gui">GUI</a>
-      <a href="https://rao-sanaullah.github.io/starVLA_setup/">Setup guide</a>
+      <a href="https://yourname.github.io/starvla-setup">Setup guide</a>
     </div>
   </div>
   <button class="tog" onclick="toggleTheme()" id="tog-btn">☀ Light mode</button>
@@ -134,14 +164,16 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 <div class="sec" id="results">
   <h2>Key results</h2>
   <p class="sec-sub">50 fully randomized trials per variant — object position (8 slots), lighting, background, pegboard location, and robot initial pose all randomized each episode. Task: <em>"Put the yellow paint brush into the crate."</em></p>
+
   <div class="mgrid">
     <div class="mc"><div class="lbl">State-free success</div><div class="val c-ns">52%</div><div class="sub">26 / 50 · 200k steps</div></div>
     <div class="mc"><div class="lbl">State-cond. success</div><div class="val c-st">28%</div><div class="sub">14 / 50 · 30k steps</div></div>
-    <div class="mc"><div class="lbl">Gap</div><div class="val c-ok">+24pp</div><div class="sub">state-free advantage</div></div>
+    <div class="mc"><div class="lbl">Gap</div><div class="val c-ok">+24pp <div class="sub">pp = percentage points</div></div><div class="sub">state-free advantage</div></div>
     <div class="mc"><div class="lbl">Self-correction ✦</div><div class="val c-ns">14%</div><div class="sub">state-free only · 0% state-cond.</div></div>
     <div class="mc"><div class="lbl">Wrong arm ✦</div><div class="val c-st">24%</div><div class="sub">state-cond. only · 0% state-free</div></div>
     <div class="mc"><div class="lbl">Optimal checkpoints</div><div class="val" style="font-size:1.2rem;color:var(--text)">200k / 30k</div><div class="sub">nostate / state steps</div></div>
   </div>
+
   <div class="bcols">
     <div>
       <h4 style="color:var(--ns)">State-free — 200k steps</h4>
@@ -162,10 +194,11 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
       <div class="bg"><div class="bl"><span>Object fell</span><span>2 (4%)</span></div><div class="bw"><div class="bf" style="width:4%;background:#64748b">4%</div></div></div>
     </div>
   </div>
+
   <div class="insight">
     <h4>✦ Notable findings</h4>
     <p><strong style="color:var(--ns)">Self-correction (state-free only):</strong> In 14% of trials the robot approached the wrong object, then visually re-assessed at the next chunk boundary and redirected to the correct target. Zero self-corrections in the state-conditioned variant.</p>
-    <p><strong style="color:var(--st)">Wrong arm failure (state-conditioned only):</strong> In 24% of trials the robot attempted to grasp a left-side object with the right arm — physically impossible and never demonstrated in training. Joint state conditioning may negatively affect the spatial reasoning the VLM would otherwise perform from the image.</p>
+    <p><strong style="color:var(--st)">Wrong arm failure (state-conditioned only):</strong> In 24% of trials the robot attempted to grasp a left-side object with the right arm — physically impossible and never demonstrated in training. Joint state conditioning corrupts the spatial reasoning the VLM would otherwise perform from the image.</p>
   </div>
 </div>
 
@@ -175,6 +208,7 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 <div class="sec" id="dataset">
   <h2>Dataset</h2>
   <p class="sec-sub">FFW-SG2 demonstration dataset collected on the physical Robotis SG2 AI Worker via kinesthetic teaching.</p>
+
   <div class="mgrid" style="margin-bottom:24px">
     <div class="mc"><div class="lbl">Total episodes</div><div class="val" style="color:var(--accent)">2,000</div><div class="sub">demonstrations</div></div>
     <div class="mc"><div class="lbl">Transitions</div><div class="val" style="color:var(--accent)">306,766</div><div class="sub">state-action pairs</div></div>
@@ -183,6 +217,7 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
     <div class="mc"><div class="lbl">Action space</div><div class="val" style="color:var(--accent)">19</div><div class="sub">DOF joint targets</div></div>
     <div class="mc"><div class="lbl">Resolution</div><div class="val" style="color:var(--accent)">376×672</div><div class="sub">RGB head camera</div></div>
   </div>
+
   <div class="two">
     <div class="card">
       <h3 style="font-size:.88rem;margin-bottom:10px">Task</h3>
@@ -206,48 +241,77 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 <div class="sec" id="videos">
   <h2>Video demonstrations</h2>
   <p class="sec-sub">Task: <em>"Put the yellow paint brush into the crate."</em> — object position, lighting, background, pegboard location, and robot initial pose all randomized each episode.</p>
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-ns" style="font-size:.78rem">State-free · 200k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Two representative trials — success and self-correction</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:420px;width:100%">
-        <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-2.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi"><h4>Successful trial</h4><p>Robot correctly identifies the paint brush, selects the appropriate arm, grasps, and places it into the crate.</p></div>
-    </div>
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:420px;width:100%">
-        <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-1.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi"><h4>Self-correction trial</h4><p>Robot initially approaches the wrong object, visually re-assesses at the next chunk boundary, then redirects to grasp the correct target.</p></div>
+
+  <!-- Row 1: State-free — two videos -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-ns" style="font-size:.78rem">State-free · 200k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Two representative trials — success and self-correction</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-2.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Successful trial</h4>
+      <p>Robot correctly identifies the paint brush, selects the appropriate arm, grasps, and places it into the crate in a single continuous motion.</p>
     </div>
   </div>
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-st" style="font-size:.78rem">State-conditioned · 30k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Three representative trials — wrong arm and wrong object failures</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
-    <div class="vc"><video controls preload="metadata" style="max-height:420px;width:100%"><source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-1.mp4" type="video/mp4">Video not available.</video></div>
-    <div class="vc"><video controls preload="metadata" style="max-height:420px;width:100%"><source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-2.mp4" type="video/mp4">Video not available.</video></div>
-    <div class="vc"><video controls preload="metadata" style="max-height:420px;width:100%"><source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-3.mp4" type="video/mp4">Video not available.</video></div>
-  </div>
-  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
-    <span class="vb vb-w" style="font-size:.78rem">Overconfident · 400k steps</span>
-    <span style="font-size:.82rem;color:var(--muted)">Both models beyond optimal checkpoint — erratic behaviour</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
-    <div></div>
-    <div class="vc">
-      <video controls preload="metadata" style="max-height:420px;width:100%">
-        <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/with-state-200k-unstable.mp4" type="video/mp4">Video not available.
-      </video>
-      <div class="vi"><h4>Beyond optimal checkpoint</h4><p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints — 200k for state-free, 30k for state-conditioned.</p></div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-nostate-1.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Self-correction trial</h4>
+      <p>Robot initially approaches the wrong object, visually re-assesses at the next chunk boundary, then redirects to grasp the correct target.</p>
     </div>
-    <div></div>
   </div>
-  <p style="font-size:.78rem;color:var(--muted);text-align:center">Video files are hosted via Git LFS in this repository.</p>
+</div>
+
+<!-- Row 2: State-conditioned — three videos -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-st" style="font-size:.78rem">State-conditioned · 30k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Three representative trials — wrong arm and wrong object failures</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-1.mp4" type="video/mp4">Video not available.
+    </video>
+  </div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-2.mp4" type="video/mp4">Video not available.
+    </video>
+  </div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/starvla-withstate-3.mp4" type="video/mp4">Video not available.
+    </video>
+  </div>
+</div>
+
+<!-- Row 3: Overconfident 400k — single centred video -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-w" style="font-size:.78rem">Overconfident · 400k steps</span>
+  <span style="font-size:.82rem;color:var(--muted)">Both models beyond optimal checkpoint — erratic behaviour</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+  <div></div>
+  <div class="vc">
+    <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/with-state-200k-unstable.mp4" type="video/mp4">Video not available.
+    </video>
+    <div class="vi">
+      <h4>Beyond optimal checkpoint</h4>
+      <p>Both models produce overconfident, spatially erratic trajectories beyond their optimal checkpoints — 200k for state-free, 30k for state-conditioned. This video shows the state-conditioned model at 400k steps.</p>
+    </div>
+  </div>
+  <div></div>
+</div>
+<p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:4px">
+  Video files are hosted via Git LFS in this repository.
+</p>
 </div>
 
 <hr>
@@ -255,7 +319,8 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 <!-- How we did it -->
 <div class="sec" id="how-we-did-it">
   <h2>How we implemented state-free and state-conditioned inference</h2>
-  <p class="sec-sub">Two StarVLA variants fine-tuned on identical data with identical hyperparameters. The only difference is whether proprioceptive joint state is provided as a model input.</p>
+  <p class="sec-sub">Two StarVLA variants fine-tuned on identical data with identical hyperparameters. The only difference is whether proprioceptive joint state is provided as a model input — both during fine-tuning and at inference.</p>
+
   <div class="two">
     <div class="card ns">
       <h3 style="color:var(--ns)">State-free variant</h3>
@@ -275,12 +340,14 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
         <li>Checkpoint: <code>steps_30000_pytorch_model.pt</code></li>
         <li>Training precision: float32</li>
         <li>state_dim config: 38 (sin-cos)</li>
-        <li>Server flag: none</li>
+        <li>Server flag: none (float32 by default)</li>
         <li>Bridge: <code>state=joint_pos</code> argument</li>
       </ul>
     </div>
   </div>
+
   <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">The one-line difference in the inference bridge</h3>
+  <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">In <code>scripts/inference/starvla_inference.py</code>, find the <code>get_action</code> call:</p>
   <div class="drow">
     <div class="dc">
       <div class="dl" style="color:var(--ns)">State-free — omit state= argument</div>
@@ -299,9 +366,20 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 )</code></pre>
     </div>
   </div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Matching server checkpoint to inference mode</h3>
+  <table class="tbl">
+    <tr><th>Mode</th><th>Server command</th><th>Bridge call</th></tr>
+    <tr><td>State-free</td><td><code>steps_200000 --use_bf16</code></td><td>no <code>state=</code></td></tr>
+    <tr><td>State-conditioned</td><td><code>steps_30000</code> (no bf16 flag)</td><td><code>state=joint_pos</code></td></tr>
+  </table>
+
   <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Sin-cos state encoding — why 19 becomes 38</h3>
+  <p style="color:var(--muted);font-size:.86rem;margin-bottom:10px">Each joint angle is replaced by its sine and cosine, doubling the dimension. This preserves angular continuity — joints at +π and −π map to the same point in sin-cos space.</p>
   <div class="cb"><div class="ch"><span class="lang">python</span><button class="cpb" onclick="cp(this)">Copy</button></div>
   <pre><code><span class="cm"># 19 joint angles → 38-dim sin-cos vector</span>
+<span class="cm"># Groups: left_arm (0-6), left_gripper (7),</span>
+<span class="cm">#         right_arm (8-14), right_gripper (15), head (16-17), lift (18)</span>
 def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
     parts = []
     for sl in [slice(0,7), slice(7,8), slice(8,15),
@@ -309,11 +387,15 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
         parts.append(np.sin(state[sl]))
         parts.append(np.cos(state[sl]))
     return np.concatenate(parts).astype(np.float32)</code></pre></div>
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Why state-free works better</h3>
   <div class="insight">
-    <h4>Why state-free works better</h4>
-    <p>StarVLA was fine-tuned with <code>obs: ["image_0"]</code> and <code>use_proprio: false</code>. The state-free model matches its training distribution exactly at inference. The camera provides implicit proprioception — arm positions, object distances, and gripper state are all directly observable. Any drift in one 16-step chunk is corrected when the next chunk is conditioned on the updated visual scene.</p>
+    <h4>Fine-tuning — inference distribution mismatch</h4>
+    <p>StarVLA was fine-tuned with <code>obs: ["image_0"]</code> and <code>use_proprio: false</code>. Although the training dataset records joint state for every transition, the pipeline deliberately excluded it. The state-free model matches its training distribution exactly at inference. The camera provides implicit proprioception — arm positions are visible, object distances can be estimated from apparent size, and gripper state is directly observable. Any drift in one 16-step chunk is corrected when the next chunk is conditioned on the updated visual scene.</p>
   </div>
-  <div class="two" style="margin-top:20px">
+
+  <h3 style="font-size:.97rem;font-weight:600;color:var(--accent2);margin:22px 0 10px">Checkpoint selection finding</h3>
+  <div class="two">
     <div class="card"><h3 style="color:var(--ns)">State-free: optimal at 200k steps</h3><p style="font-size:.83rem">Trained to 400k but best at 200k. Beyond this the model overfits to training positions and fails to generalize to randomized object locations and lighting.</p></div>
     <div class="card"><h3 style="color:var(--st)">State-conditioned: optimal at 30k steps</h3><p style="font-size:.83rem">The harder joint state + visual learning problem leads to earlier overfitting. Model degrades rapidly after 30k — producing overconfident, spatially erratic outputs.</p></div>
   </div>
@@ -321,101 +403,99 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
 
 <hr>
 
+
+
 <!-- Checkpoint sweep -->
 <div class="sec" id="checkpoint-sweep">
   <h2>Checkpoint selection analysis</h2>
-  <p class="sec-sub">Offline action prediction error across training checkpoints — evaluated on 10 dataset episodes without simulation. Confirms where each model peaks and degrades, and validates the chosen deployment checkpoints.</p>
+  <p class="sec-sub">Offline action prediction error across training checkpoints — evaluated on 10 dataset episodes without simulation. Shows where each model peaks and degrades.</p>
 
-  <div style="margin-bottom:12px;display:flex;align-items:center;gap:10px">
+  <!-- State-free -->
+  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-ns">State-free</span>
-    <span style="font-size:.82rem;color:var(--muted)">Peaks at 200k steps · degrades gradually · optimal MAE = 0.071 rad</span>
+    <span style="font-size:.82rem;color:var(--muted)">Peaks at 200k steps · degrades gradually after · optimal MAE = 0.071 rad</span>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:32px">
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state-free.png" alt="State-free MAE RMSE normalized MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">MAE · RMSE · Normalized MAE vs steps</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state-free.png"
+           alt="State-free MAE RMSE normalized MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        MAE · RMSE · Normalized MAE vs steps
+      </div>
     </div>
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png" alt="State-free combined MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">Overall MAE with error bars</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state-free.png"
+           alt="State-free combined MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        Overall MAE with error bars
+      </div>
     </div>
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png" alt="State-free per-group MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">Per joint group MAE vs steps</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state-free.png"
+           alt="State-free per-group MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        Per joint group MAE vs steps
+      </div>
     </div>
   </div>
 
-  <div style="margin-bottom:12px;display:flex;align-items:center;gap:10px">
+  <!-- State-conditioned -->
+  <div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
     <span class="vb vb-st">State-conditioned</span>
     <span style="font-size:.82rem;color:var(--muted)">Peaks at 30k–50k steps · collapses rapidly after · MAE triples by 100k steps</span>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:28px">
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state.png" alt="State-conditioned MAE RMSE normalized MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">MAE · RMSE · Normalized MAE vs steps</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:32px">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_metrics-state.png"
+           alt="State-conditioned MAE RMSE normalized MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        MAE · RMSE · Normalized MAE vs steps
+      </div>
     </div>
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png" alt="State-conditioned combined MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">Overall MAE with error bars</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_combined-state.png"
+           alt="State-conditioned combined MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        Overall MAE with error bars
+      </div>
     </div>
-    <div class="img-card">
-      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png" alt="State-conditioned per-group MAE vs checkpoint" loading="lazy"/>
-      <div class="img-cap">Per joint group MAE vs steps</div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden">
+      <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/offline_ckpt_sweep_groups-state.png"
+           alt="State-conditioned per-group MAE vs checkpoint"
+           style="width:100%;display:block" loading="lazy"/>
+      <div style="padding:8px 12px;font-size:.75rem;color:var(--muted);text-align:center">
+        Per joint group MAE vs steps
+      </div>
     </div>
   </div>
 
+  <!-- Key findings -->
   <div class="insight">
     <h4>Key findings</h4>
-    <p><strong style="color:var(--ns)">State-free:</strong> Improves steadily from 50k (MAE = 0.100 rad) to optimal at 200k (MAE = 0.071 rad), then degrades gradually — reaching 0.239 rad at 350k. Degradation is gradual with increasing variance at later checkpoints.</p>
-    <p><strong style="color:var(--st)">State-conditioned:</strong> Peaks at 30k–50k (MAE ≈ 0.047 rad) then collapses to 0.237 rad at 100k, plateauing at ~0.30 rad from 200k to 400k. The cliff-edge degradation after 50k confirms that continued training actively destroys the learned policy. By 400k the normalized MAE reaches 32% of the action range.</p>
+    <p><strong style="color:var(--ns)">State-free:</strong> Improves steadily from 50k (MAE = 0.100 rad) to its optimal at 200k steps (MAE = 0.071 rad), then degrades gradually — reaching 0.239 rad at 350k. Degradation is gradual with spikes only at chunk boundaries.</p>
+    <p style="margin-top:6px"><strong style="color:var(--st)">State-conditioned:</strong> Peaks at 30k–50k steps (MAE ≈ 0.047 rad) then collapses to 0.237 rad at 100k, plateauing at ~0.30 rad from 200k to 400k. The cliff-edge degradation after 50k confirms that continued training actively destroys the learned policy. By 400k the normalized MAE reaches 32% of the action range — predictions are off by nearly a third of the usable joint space.</p>
   </div>
 
-  <table class="tbl" style="margin-top:16px">
-    <tr><th>Metric</th><th>State-free best (200k)</th><th>State-cond. best (30k)</th><th>State-free 400k</th><th>State-cond. 400k</th></tr>
+  <!-- Comparison table -->
+  <table class="tbl" style="margin-top:20px">
+    <tr><th>Metric</th><th>State-free optimal (200k)</th><th>State-cond. optimal (30k)</th><th>State-free 400k</th><th>State-cond. 400k</th></tr>
     <tr><td>Overall MAE (rad)</td><td class="win">0.071</td><td>0.047</td><td>0.199</td><td>0.298</td></tr>
     <tr><td>Overall RMSE (rad)</td><td class="win">0.110</td><td>0.073</td><td>0.269</td><td>0.401</td></tr>
     <tr><td>Normalized MAE (%)</td><td class="win">8.1%</td><td>5.5%</td><td>22.3%</td><td>32.1%</td></tr>
-    <tr><td>Degradation pattern</td><td colspan="2">—</td><td>Gradual after 200k</td><td>Cliff edge after 50k</td></tr>
+    <tr><td>Degradation onset</td><td>Gradual after 200k</td><td colspan="3">Cliff edge after 50k</td></tr>
   </table>
 </div>
 
 <hr>
 
-<!-- Offline benchmark -->
-<div class="sec" id="benchmark">
-  <h2>Offline action prediction benchmark</h2>
-  <p class="sec-sub">Action prediction accuracy evaluated on 50 held-out episodes (250 frames) from the training dataset. Predictions compared against ground-truth demonstration actions — no simulation required.</p>
-  <div class="bgrid">
-    <div class="card">
-      <h3 style="color:var(--ns)">State-free — 200k steps</h3>
-      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--ns)">0.0755 ± 0.038 rad</span></div>
-      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--ns)">0.1199 rad</span></div>
-      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--ns)">8.49% of range</span></div>
-      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0788 rad</span></div>
-      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0822 rad</span></div>
-      <div class="br"><span class="k">Head MAE</span><span class="v">0.0230 rad</span></div>
-      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0155</span></div>
-      <div class="br"><span class="k">Simulation success</span><span class="v win">52%</span></div>
-    </div>
-    <div class="card">
-      <h3 style="color:var(--st)">State-conditioned — 30k steps</h3>
-      <div class="br"><span class="k">Overall MAE</span><span class="v" style="color:var(--st)">0.0491 ± 0.021 rad</span></div>
-      <div class="br"><span class="k">Overall RMSE</span><span class="v" style="color:var(--st)">0.0822 rad</span></div>
-      <div class="br"><span class="k">Normalized MAE</span><span class="v" style="color:var(--st)">5.44% of range</span></div>
-      <div class="br"><span class="k">Left arm MAE</span><span class="v">0.0527 rad</span></div>
-      <div class="br"><span class="k">Right arm MAE</span><span class="v">0.0420 rad</span></div>
-      <div class="br"><span class="k">Head MAE</span><span class="v">0.0151 rad</span></div>
-      <div class="br"><span class="k">Chunk smoothness</span><span class="v">0.0200</span></div>
-      <div class="br"><span class="k">Simulation success</span><span class="v" style="color:var(--danger)">28%</span></div>
-    </div>
-  </div>
-  <div class="insight">
-    <h4>Offline MAE does not predict deployment performance</h4>
-    <p>The state-conditioned model achieves lower offline MAE (0.0491 vs 0.0755 rad) yet only 28% simulation success vs 52% for state-free. This demonstrates the offline-to-online gap: lower prediction error on training data does not imply better generalization to randomized scenes. The state-free model learns a more robust visual policy rather than memorizing joint trajectories.</p>
-  </div>
-</div>
-
-<hr>
+  
 
 <!-- GUI -->
 <div class="sec" id="gui">
@@ -429,12 +509,20 @@ def sincos_encode(state):  <span class="cm"># (19,) → (38,)</span>
     <div class="gf"><div class="ico">📡</div><h4>Live status</h4><p>WebSocket shows real-time execution status.</p></div>
     <div class="gf"><div class="ico">📋</div><h4>Task history</h4><p>Logs all submitted tasks with timestamps.</p></div>
   </div>
+
+  <!-- GUI screenshot -->
   <div style="margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
-    <img src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/GUI.png" alt="StarVLA web GUI" style="width:100%;display:block;" loading="lazy"/>
+    <img
+      src="https://raw.githubusercontent.com/Rao-Sanaullah/starVLA_results/main/GUI.png"
+      alt="StarVLA web GUI showing task input, quick task buttons, reset and stop controls, and live status log"
+      style="width:100%;display:block;"
+      loading="lazy"
+    />
     <div style="padding:10px 16px;background:var(--card);font-size:.78rem;color:var(--muted)">
       Web GUI running on <code>http://localhost:8000</code> — task input, quick task buttons, reset/stop controls, and live WebSocket status log.
     </div>
   </div>
+
   <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-top:20px">
     <h4 style="margin-bottom:9px;font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.7px">Start the GUI</h4>
     <div class="cb"><div class="ch"><span class="lang">bash</span><button class="cpb" onclick="cp(this)">Copy</button></div>
