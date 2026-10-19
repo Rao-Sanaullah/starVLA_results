@@ -309,6 +309,36 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
   </div>
   <div></div>
 </div>
+
+
+<!-- Row 4: Cross-checkpoint checks (exploratory) -->
+<div style="margin-bottom:10px;display:flex;align-items:center;gap:10px">
+  <span class="vb vb-w" style="font-size:.78rem">Cross-checkpoint checks</span>
+  <span style="font-size:.82rem;color:var(--muted)">Exploratory runs of each variant at the other variant's checkpoint (not part of the 50-trial evaluation)</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+  <div class="vc">
+<video controls preload="metadata" style="max-height:420px;width:100%">
+  <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/state-free-30k.webm" type="video/webm">Video not available.
+</video>
+    <div class="vi">
+      <span class="vb vb-ns">State-free · 30k steps</span>
+      <h4>State-free at the state-conditioned checkpoint</h4>
+      <p>Exploratory run. In our testing, the state-free model performed worse at 30k than at its selected 200k checkpoint.</p>
+    </div>
+  </div>
+  <div class="vc">
+   <video controls preload="metadata" style="max-height:420px;width:100%">
+      <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/state-conditioned%20model%20at%20200k.webm" type="video/webm">Video not available.
+    </video>
+    <div class="vi">
+      <span class="vb vb-st">State-conditioned · 200k steps</span>
+      <h4>State-conditioned at the state-free checkpoint</h4>
+      <p>Exploratory run. Both arms move erratically and make contact with the table, consistent with the offline error collapse at this checkpoint.</p>
+    </div>
+  </div>
+</div>
+  
 <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:4px">
   Video files are hosted via Git LFS in this repository.
 </p>
