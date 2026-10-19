@@ -266,11 +266,6 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
     Both variants were fine-tuned for 400k steps with seed 42 in bfloat16, with a frozen Qwen2.5-VL-3B-Instruct-Action backbone and a trainable DiT-B action head. They differ in the state input and <code>state_dim</code> (19 vs. 38), so they are not parameter-matched.
   </p>
 
-  <p style="font-size:.82rem;color:var(--muted);margin-bottom:6px">To serve a checkpoint:</p>
-  <pre style="font-size:.78rem;overflow-x:auto"><code>python deployment/model_server/server_policy.py \
-    --ckpt_path path/to/steps_200000_pytorch_model.pt \
-    --port 5555 \
-    --use_bf16</code></pre>
 </div>
   
 <hr>
@@ -357,7 +352,7 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
   <div class="vc">
 <video controls preload="metadata" style="max-height:420px;width:100%">
-  <source src="https://media.githubusercontent.com/media/Rao-Sanaullah/starVLA_results/main/state-free-30k.webm" type="video/webm">Video not available.
+  <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/state-free%20at%2030k.mp4" type="video/mp4">Video not available.
 </video>
     <div class="vi">
       <span class="vb vb-ns">State-free · 30k steps</span>
@@ -367,7 +362,7 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
   </div>
   <div class="vc">
    <video controls preload="metadata" style="max-height:420px;width:100%">
-      <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/state-conditioned%20model%20at%20200k.webm" type="video/webm">Video not available.
+      <source src="https://github.com/Rao-Sanaullah/starVLA_results/blob/main/state-conditioned%20model%20at%20200k.mp4" type="video/mp4">Video not available.
     </video>
     <div class="vi">
       <span class="vb vb-st">State-conditioned · 200k steps</span>
