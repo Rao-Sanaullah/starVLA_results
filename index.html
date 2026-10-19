@@ -237,6 +237,44 @@ pre{padding:15px;overflow-x:auto;font-family:'JetBrains Mono','Fira Code',monosp
 
 <hr>
 
+<!-- Checkpoints -->
+<div class="sec" id="checkpoints">
+  <h2>Fine-tuned checkpoints</h2>
+  <p class="sec-sub">StarVLA checkpoints for both variants are hosted on Hugging Face. The two selected checkpoints are those used for all reported results; the other two were used only for the cross-checkpoint checks.</p>
+
+  <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:16px">
+    <thead>
+      <tr style="text-align:left;border-bottom:1px solid var(--muted)">
+        <th style="padding:8px">Variant</th>
+        <th style="padding:8px">Checkpoint</th>
+        <th style="padding:8px">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:8px"><span class="vb vb-ns">State-free</span></td><td style="padding:8px">200k steps</td><td style="padding:8px">Selected (used in reported results)</td></tr>
+      <tr><td style="padding:8px"><span class="vb vb-ns">State-free</span></td><td style="padding:8px">30k steps</td><td style="padding:8px">Cross-checkpoint check only</td></tr>
+      <tr><td style="padding:8px"><span class="vb vb-st">State-conditioned</span></td><td style="padding:8px">30k steps</td><td style="padding:8px">Selected (used in reported results)</td></tr>
+      <tr><td style="padding:8px"><span class="vb vb-st">State-conditioned</span></td><td style="padding:8px">200k steps</td><td style="padding:8px">Cross-checkpoint check only</td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-bottom:16px">
+    <a href="https://huggingface.co/Saanaa/StarVLA/tree/main" target="_blank" rel="noopener">Download checkpoints on Hugging Face →</a>
+  </p>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:8px">
+    Both variants were fine-tuned for 400k steps with seed 42 in bfloat16, with a frozen Qwen2.5-VL-3B-Instruct-Action backbone and a trainable DiT-B action head. They differ in the state input and <code>state_dim</code> (19 vs. 38), so they are not parameter-matched.
+  </p>
+
+  <p style="font-size:.82rem;color:var(--muted);margin-bottom:6px">To serve a checkpoint:</p>
+  <pre style="font-size:.78rem;overflow-x:auto"><code>python deployment/model_server/server_policy.py \
+    --ckpt_path path/to/steps_200000_pytorch_model.pt \
+    --port 5555 \
+    --use_bf16</code></pre>
+</div>
+  
+<hr>
+
 <!-- Videos -->
 <div class="sec" id="videos">
   <h2>Video demonstrations</h2>
